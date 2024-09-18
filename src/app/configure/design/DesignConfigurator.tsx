@@ -11,19 +11,19 @@ import { RadioGroup } from "@headlessui/react";
 import { useRef, useState } from "react";
 import {
   COLORS,
-  //   FINISHES,
-  //   MATERIALS,
-  //   MODELS,
+  // FINISHES,
+  // MATERIALS,
+  MODELS,
 } from "@/validators/option-validator";
 import { Label } from "@/components/ui/label";
-// import {
-//   DropdownMenu,
-//   DropdownMenuContent,
-//   DropdownMenuItem,
-//   DropdownMenuTrigger,
-// } from "@/components/ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-// import { ArrowRight, Check, ChevronsUpDown } from "lucide-react";
+import { ArrowRight, Check, ChevronsUpDown } from "lucide-react";
 // import { BASE_PRICE } from "@/config/products";
 // import { useUploadThing } from "@/lib/uploadthing";
 // import { useToast } from "@/components/ui/use-toast";
@@ -64,12 +64,12 @@ const DesignConfigurator = ({
 
   const [options, setOptions] = useState<{
     color: (typeof COLORS)[number];
-    //   model: (typeof MODELS.options)[number];
+    model: (typeof MODELS.options)[number];
     //   material: (typeof MATERIALS.options)[number];
     //   finish: (typeof FINISHES.options)[number];
   }>({
     color: COLORS[0],
-    //   model: MODELS.options[0],
+    model: MODELS.options[0],
     //   material: MATERIALS.options[0],
     //   finish: FINISHES.options[0],
   });
@@ -270,7 +270,7 @@ const DesignConfigurator = ({
                   </div>
                 </RadioGroup>
 
-                {/* <div className="relative flex flex-col gap-3 w-full">
+                <div className="relative flex flex-col gap-3 w-full">
                   <Label>Model</Label>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -311,7 +311,7 @@ const DesignConfigurator = ({
                       ))}
                     </DropdownMenuContent>
                   </DropdownMenu>
-                </div> */}
+                </div>
 
                 {/* {[MATERIALS, FINISHES].map(
                   ({ name, options: selectableOptions }) => (
