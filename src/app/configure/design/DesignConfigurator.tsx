@@ -2,17 +2,16 @@
 
 import HandleComponent from "@/components/HandleComponent";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { cn } from "@/lib/utils";
+import { cn, formatPrice } from "@/lib/utils";
 import { ScrollArea } from "@/components/ui/scroll-area";
-// import { cn, formatPrice } from "@/lib/utils";
 import NextImage from "next/image";
 import { Rnd } from "react-rnd";
 import { RadioGroup } from "@headlessui/react";
 import { useRef, useState } from "react";
 import {
   COLORS,
-  // FINISHES,
-  // MATERIALS,
+  FINISHES,
+  MATERIALS,
   MODELS,
 } from "@/validators/option-validator";
 import { Label } from "@/components/ui/label";
@@ -65,13 +64,13 @@ const DesignConfigurator = ({
   const [options, setOptions] = useState<{
     color: (typeof COLORS)[number];
     model: (typeof MODELS.options)[number];
-    //   material: (typeof MATERIALS.options)[number];
-    //   finish: (typeof FINISHES.options)[number];
+    material: (typeof MATERIALS.options)[number];
+    finish: (typeof FINISHES.options)[number];
   }>({
     color: COLORS[0],
     model: MODELS.options[0],
-    //   material: MATERIALS.options[0],
-    //   finish: FINISHES.options[0],
+    material: MATERIALS.options[0],
+    finish: FINISHES.options[0],
   });
 
   //   const [renderedDimension, setRenderedDimension] = useState({
@@ -313,7 +312,7 @@ const DesignConfigurator = ({
                   </DropdownMenu>
                 </div>
 
-                {/* {[MATERIALS, FINISHES].map(
+                {[MATERIALS, FINISHES].map(
                   ({ name, options: selectableOptions }) => (
                     <RadioGroup
                       key={name}
@@ -325,9 +324,7 @@ const DesignConfigurator = ({
                         }));
                       }}
                     >
-                      <Label>
-                        {name.slice(0, 1).toUpperCase() + name.slice(1)}
-                      </Label>
+                      <Label className="capitalize">{name}</Label>
                       <div className="mt-3 space-y-4">
                         {selectableOptions.map((option) => (
                           <RadioGroup.Option
@@ -377,7 +374,7 @@ const DesignConfigurator = ({
                       </div>
                     </RadioGroup>
                   )
-                )} */}
+                )}
               </div>
             </div>
           </div>
