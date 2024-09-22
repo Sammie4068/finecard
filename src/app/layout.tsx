@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+// import type { Metadata } from "next";
 import { Recursive } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
