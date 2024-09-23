@@ -105,6 +105,7 @@ const Page = () => {
                   </p>
                 )}
               </div>
+
               {isPending ? null : (
                 <p className="text-xs text-zinc-500">PNG, JPG, JPEG</p>
               )}
