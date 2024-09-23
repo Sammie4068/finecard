@@ -24,7 +24,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
 
   const [showConfetti, setShowConfetti] = useState<boolean>(false);
-  useEffect(() => setShowConfetti(true), []);
+  useEffect(() => setShowConfetti(true));
 
   const { color, model, finish, material } = configuration;
 
@@ -41,7 +41,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
     totalPrice += PRODUCT_PRICES.material.polycarbonate;
   if (finish === "textured") totalPrice += PRODUCT_PRICES.finish.textured;
 
-  const { mutate: createPaymentSession } = useMutation({
+  const { mutate: createPaymentSession, isPending } = useMutation({
     mutationKey: ["get-checkout-session"],
     mutationFn: createCheckoutSession,
     onSuccess: ({ url }) => {
@@ -161,6 +161,9 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
 
             <div className="mt-8 flex justify-end pb-12">
               <Button
+                isLoading={isPending}
+                disabled={isPending}
+                loadingText="Checking out"
                 onClick={() => handleCheckout()}
                 className="px-4 sm:px-6 lg:px-8"
               >
