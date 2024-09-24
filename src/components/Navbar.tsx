@@ -11,11 +11,17 @@ export default async function Navbar() {
   const isAdmin = user?.email === process.env.ADMIN_EMAIL;
 
   return (
-    <nav className="sticky z-[100] h-14 inset-x-0 top-0 w-full border-b border-gray-200 bg-white/75 backdrop-blur-lg transition-all">
+    <nav className="sticky z-[100] h-full inset-x-0 top-0 w-full bg-background backdrop-blur-lg transition-all">
       <MaxWidthWrapper>
-        <div className="flex h-14 items-center justify-between border-b border-zinc-200">
-          <Link href="/" className="flex z-40 font-semibold">
-            case<span className="text-green-600">cobra</span>
+        <div className="flex h-20 items-center justify-between">
+          <Link
+            href="/"
+            className="flex gap-0.5 items-center z-40 font-semibold"
+          >
+            Fine
+            <span className="bg-primary text-background px-2 text-left">
+              Card
+            </span>
           </Link>
 
           <div className="h-full flex items-center space-x-4">
@@ -81,7 +87,7 @@ export default async function Navbar() {
                     className: "hidden sm:flex items-center gap-1",
                   })}
                 >
-                  Create Case
+                  Create Card
                   <ArrowRight className="ml-1.5 h-5 w-5" />
                 </Link>
               </>
