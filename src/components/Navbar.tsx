@@ -11,7 +11,7 @@ export default async function Navbar() {
   const isAdmin = user?.email === process.env.ADMIN_EMAIL;
 
   return (
-    <nav className="sticky z-[100] h-full inset-x-0 top-0 w-full bg-background backdrop-blur-lg transition-all">
+    <nav className="sticky z-[100] h-full inset-x-0 top-0 w-full bg-background/70 backdrop-blur-lg transition-all">
       <MaxWidthWrapper>
         <div className="flex h-20 items-center justify-between">
           <Link
@@ -19,7 +19,7 @@ export default async function Navbar() {
             className="flex gap-0.5 items-center z-40 font-semibold"
           >
             Fine
-            <span className="bg-primary text-background px-2 text-left">
+            <span className="bg-primary text-secondary px-2 text-left">
               Card
             </span>
           </Link>

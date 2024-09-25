@@ -1,28 +1,29 @@
 import { cn } from "@/lib/utils";
 import { HTMLAttributes } from "react";
 
-interface PhoneProps extends HTMLAttributes<HTMLDivElement> {
+interface TemplateCardProps extends HTMLAttributes<HTMLDivElement> {
   imgSrc: string;
   dark?: boolean;
 }
 
-const Phone = ({ imgSrc, className, dark = false, ...props }: PhoneProps) => {
+const TemplateCard = ({
+  imgSrc,
+  className,
+  dark = false,
+  ...props
+}: TemplateCardProps) => {
   return (
     <div
       className={cn(
-        "relative pointer-events-none z-50 overflow-hidden",
+        "relative pointer-events-none z-50 overflow-hidden rounded-lg",
         className
       )}
       {...props}
     >
       <img
-        src={
-          dark
-            ? "/phone-template-dark-edges.png"
-            : "/phone-template-white-edges.png"
-        }
+        src={"/template_card.png"}
         className="pointer-events-none z-50 select-none"
-        alt="phone image"
+        alt="card image"
       />
 
       <div className="absolute -z-10 inset-0">
@@ -36,4 +37,4 @@ const Phone = ({ imgSrc, className, dark = false, ...props }: PhoneProps) => {
   );
 };
 
-export default Phone;
+export default TemplateCard;
