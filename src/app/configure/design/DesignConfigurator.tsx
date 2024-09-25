@@ -157,23 +157,23 @@ const DesignConfigurator = ({
         ref={containerRef}
         className="relative h-[37.5rem] overflow-hidden col-span-2 w-full max-w-4xl flex items-center justify-center rounded-lg border-2 border-dashed border-gray-300 p-12 text-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
       >
-        <div className="relative w-60 bg-opacity-50 pointer-events-none aspect-[896/1831]">
+        <div className="relative w-60 bg-opacity-50 pointer-events-none aspect-[64/39]">
           <AspectRatio
             ref={phoneCaseRef}
-            ratio={896 / 1831}
-            className="pointer-events-none relative z-50 aspect-[896/1831] w-full"
+            ratio={64 / 39}
+            className="pointer-events-none relative z-50 aspect-[64/39] w-full"
           >
             <NextImage
               fill
               alt="phone image"
-              src="/phone-template.png"
+              src="/template_card.png"
               className="pointer-events-none z-50 select-none"
             />
           </AspectRatio>
-          <div className="absolute z-40 inset-0 left-[3px] top-px right-[3px] bottom-px rounded-[32px] shadow-[0_0_0_99999px_rgba(229,231,235,0.6)]" />
+          <div className="absolute z-40 inset-0 left-[3px] top-px right-[3px] bottom-px rounded-lg shadow-[0_0_0_99999px_rgba(229,231,235,0.6)]" />
           <div
             className={cn(
-              "absolute inset-0 left-[3px] top-px right-[3px] bottom-px rounded-[32px]",
+              "absolute inset-0 left-[3px] top-px right-[3px] bottom-px rounded-lg",
               `bg-${options.color.tw}`
             )}
           />
@@ -226,8 +226,8 @@ const DesignConfigurator = ({
           />
 
           <div className="px-8 pb-12 pt-8">
-            <h2 className="tracking-tight font-bold text-3xl">
-              Customize your case
+            <h2 className="tracking-tight text-background font-bold text-3xl">
+              Customize your card
             </h2>
 
             <div className="w-full h-px bg-zinc-200 my-6" />
@@ -243,7 +243,9 @@ const DesignConfigurator = ({
                     }));
                   }}
                 >
-                  <Label>Color: {options.color.label}</Label>
+                  <Label className="text-background">
+                    Color: {options.color.label}
+                  </Label>
                   <div className="mt-3 flex items-center space-x-3">
                     {COLORS.map((color) => (
                       <RadioGroup.Option
@@ -270,7 +272,7 @@ const DesignConfigurator = ({
                 </RadioGroup>
 
                 <div className="relative flex flex-col gap-3 w-full">
-                  <Label>Model</Label>
+                  <Label className="text-background">Model</Label>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button
@@ -324,7 +326,9 @@ const DesignConfigurator = ({
                         }));
                       }}
                     >
-                      <Label className="capitalize">{name}</Label>
+                      <Label className="capitalize text-background">
+                        {name}
+                      </Label>
                       <div className="mt-3 space-y-4">
                         {selectableOptions.map((option) => (
                           <RadioGroup.Option
@@ -334,7 +338,7 @@ const DesignConfigurator = ({
                               cn(
                                 "relative block cursor-pointer rounded-lg bg-white px-6 py-4 shadow-sm border-2 border-zinc-200 focus:outline-none ring-0 focus:ring-0 outline-none sm:flex sm:justify-between",
                                 {
-                                  "border-primary": active || checked,
+                                  "border-background": active || checked,
                                 }
                               )
                             }
@@ -384,7 +388,7 @@ const DesignConfigurator = ({
           <div className="h-px w-full bg-zinc-200" />
           <div className="w-full h-full flex justify-end items-center">
             <div className="w-full flex gap-6 items-center">
-              <p className="font-medium whitespace-nowrap">
+              <p className="font-medium whitespace-nowrap text-background">
                 {formatPrice(
                   (BASE_PRICE + options.finish.price + options.material.price) /
                     100
@@ -404,7 +408,7 @@ const DesignConfigurator = ({
                   })
                 }
                 size="sm"
-                className="w-full"
+                className="w-full bg-secondary text-primary hover:bg-secondary/90 hover:text-primary/90"
               >
                 Continue
                 <ArrowRight className="h-4 w-4 ml-1.5 inline" />

@@ -40,6 +40,16 @@ export default function Home() {
                   </li>
                 </div>
               </ul>
+              <Link
+                href={"/configure/upload"}
+                className={buttonVariants({
+                  size: "lg",
+                  className: "sm:hidden items-center gap-1 mt-7",
+                })}
+              >
+                Create Case
+                <ArrowRight className="ml-1.5 h-5 w-5" />
+              </Link>
 
               <div className="mt-12 flex flex-col sm:flex-row items-center sm:items-start gap-5">
                 <div className="flex -space-x-4">
@@ -114,16 +124,6 @@ export default function Home() {
                 height={700}
                 className="hidden sm:block lg:hidden xl:block"
               />
-              <Link
-                href={"/configure/upload"}
-                className={buttonVariants({
-                  size: "lg",
-                  className: "sm:hidden items-center gap-1",
-                })}
-              >
-                Create Case
-                <ArrowRight className="ml-1.5 h-5 w-5" />
-              </Link>
             </div>
           </div>
         </MaxWidthWrapper>
