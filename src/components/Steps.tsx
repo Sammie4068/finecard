@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { Check } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 const STEPS = [
@@ -31,7 +32,6 @@ const Steps = () => {
         const isCompleted = STEPS.slice(i + 1).some((step) =>
           pathname.endsWith(step.url)
         );
-        const imgPath = `/snake-${i + 1}.png`;
 
         return (
           <li key={step.name} className="relative overflow-hidden lg:flex-1">
@@ -41,7 +41,7 @@ const Steps = () => {
                   "absolute left-0 top-0 h-full w-1 bg-zinc-400 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full",
                   {
                     "bg-zinc-700": isCurrent,
-                    "bg-primary": isCompleted,
+                    "bg-green-600": isCompleted,
                   }
                 )}
                 aria-hidden="true"
@@ -50,35 +50,33 @@ const Steps = () => {
               <span
                 className={cn(
                   i !== 0 ? "lg:pl-9" : "",
-                  "flex items-center px-6 py-4 text-sm font-medium"
+                  "flex items-center px-6 py-4 text-sm font-medium gap-4"
                 )}
               >
-                <span className="flex-shrink-0">
-                  <img
-                    src={imgPath}
-                    className={cn(
-                      "flex h-20 w-20 object-contain items-center justify-center",
-                      {
-                        "border-none": isCompleted,
-                        "border-zinc-700": isCurrent,
-                      }
-                    )}
-                  />
-                </span>
-
                 <span className="ml-4 h-full mt-0.5 flex min-w-0 flex-col justify-center">
                   <span
                     className={cn("text-sm font-semibold text-zinc-700", {
-                      "text-primary": isCompleted,
+                      "text-green-600": isCompleted,
                       "text-zinc-700": isCurrent,
                     })}
                   >
                     {step.name}
                   </span>
-                  <span className="text-sm text-zinc-500">
+                  <span
+                    className={cn("text-sm text-zinc-500", {
+                      "text-green-600": isCompleted,
+                      "text-zinc-700": isCurrent,
+                    })}
+                  >
                     {step.description}
                   </span>
                 </span>
+                <Check
+                  className={cn(
+                    "text-green-600",
+                    isCompleted ? "block" : "hidden"
+                  )}
+                />
               </span>
 
               {/* separator */}
