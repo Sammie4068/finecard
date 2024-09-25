@@ -4,9 +4,9 @@ import { HTMLAttributes, useEffect, useRef, useState } from "react";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import { useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
-import Phone from "./TemplateCard";
+import TemplateCard from "./TemplateCard";
 
-const PHONES = [
+const CARDS = [
   "/testimonials/1.jpg",
   "/testimonials/2.jpg",
   "/testimonials/3.jpg",
@@ -100,7 +100,7 @@ function Review({ imgSrc, className, ...props }: ReviewProps) {
       style={{ animationDelay }}
       {...props}
     >
-      <Phone imgSrc={imgSrc} />
+      <TemplateCard imgSrc={imgSrc} />
     </div>
   );
 }
@@ -108,7 +108,7 @@ function Review({ imgSrc, className, ...props }: ReviewProps) {
 function ReviewGrid() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.4 });
-  const columns = splitArray(PHONES, 3);
+  const columns = splitArray(CARDS, 3);
   const column1 = columns[0];
   const column2 = columns[1];
   const column3 = splitArray(columns[2], 2);

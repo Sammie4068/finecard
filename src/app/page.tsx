@@ -43,27 +43,37 @@ export default function Home() {
 
               <div className="mt-12 flex flex-col sm:flex-row items-center sm:items-start gap-5">
                 <div className="flex -space-x-4">
-                  <img
+                  <Image
+                    width={50}
+                    height={50}
                     className="inline-block h-10 w-10 rounded-full ring-2 ring-slate-100"
                     src="/users/user-1.png"
                     alt="user image"
                   />
-                  <img
+                  <Image
+                    width={50}
+                    height={50}
                     className="inline-block h-10 w-10 rounded-full ring-2 ring-slate-100"
                     src="/users/user-2.png"
                     alt="user image"
                   />
-                  <img
+                  <Image
+                    width={50}
+                    height={50}
                     className="inline-block h-10 w-10 rounded-full ring-2 ring-slate-100"
                     src="/users/user-3.png"
                     alt="user image"
                   />
-                  <img
+                  <Image
+                    width={50}
+                    height={50}
                     className="inline-block h-10 w-10 rounded-full ring-2 ring-slate-100"
                     src="/users/user-4.jpg"
                     alt="user image"
                   />
-                  <img
+                  <Image
+                    width={50}
+                    height={50}
                     className="inline-block object-cover h-10 w-10 rounded-full ring-2 ring-slate-100"
                     src="/users/user-5.jpg"
                     alt="user image"
@@ -89,9 +99,12 @@ export default function Home() {
 
           <div className="col-span-full lg:col-span-1 w-full flex justify-center px-8 sm:px-16 md:px-0 mt-32 lg:mx-0 lg:mt-20 h-fit">
             <div className="relative md:max-w-xl">
-              <img
+              <Image
+                width={100}
+                height={100}
                 src="/your-image.png"
                 className="absolute w-40 lg:w-52 left-56 text-foreground -top-20 select-none hidden sm:block lg:hidden xl:block filter invert brightness-0 contrast-200"
+                alt="your image arrow"
               />
 
               <Image
@@ -99,7 +112,18 @@ export default function Home() {
                 alt="hero card"
                 width={700}
                 height={700}
+                className="hidden sm:block lg:hidden xl:block"
               />
+              <Link
+                href={"/configure/upload"}
+                className={buttonVariants({
+                  size: "lg",
+                  className: "sm:hidden items-center gap-1",
+                })}
+              >
+                Create Case
+                <ArrowRight className="ml-1.5 h-5 w-5" />
+              </Link>
             </div>
           </div>
         </MaxWidthWrapper>
