@@ -7,12 +7,12 @@ import { usePathname } from "next/navigation";
 const STEPS = [
   {
     name: "Step 1: Add image",
-    description: "Choose an image for your case",
+    description: "Choose an image for your card",
     url: "/upload",
   },
   {
     name: "Step 2: Customize design",
-    description: "Make the case yours",
+    description: "Make the card yours",
     url: "/design",
   },
   {

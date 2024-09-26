@@ -8,12 +8,7 @@ import NextImage from "next/image";
 import { Rnd } from "react-rnd";
 import { RadioGroup } from "@headlessui/react";
 import { useRef, useState } from "react";
-import {
-  COLORS,
-  FINISHES,
-  MATERIALS,
-  MODELS,
-} from "@/validators/option-validator";
+import { COLORS, FINISHES } from "@/validators/option-validator";
 import { Label } from "@/components/ui/label";
 import {
   DropdownMenu,
@@ -63,13 +58,9 @@ const DesignConfigurator = ({
 
   const [options, setOptions] = useState<{
     color: (typeof COLORS)[number];
-    model: (typeof MODELS.options)[number];
-    material: (typeof MATERIALS.options)[number];
     finish: (typeof FINISHES.options)[number];
   }>({
     color: COLORS[0],
-    model: MODELS.options[0],
-    material: MATERIALS.options[0],
     finish: FINISHES.options[0],
   });
 
@@ -271,114 +262,67 @@ const DesignConfigurator = ({
                   </div>
                 </RadioGroup>
 
-                <div className="relative flex flex-col gap-3 w-full">
-                  <Label className="text-background">Model</Label>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button
-                        variant="outline"
-                        role="combobox"
-                        className="w-full justify-between"
-                      >
-                        {options.model.label}
-                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent>
-                      {MODELS.options.map((model) => (
-                        <DropdownMenuItem
-                          key={model.label}
-                          className={cn(
-                            "flex text-sm gap-1 items-center p-1.5 cursor-default hover:bg-zinc-100",
-                            {
-                              "bg-zinc-100":
-                                model.label === options.model.label,
-                            }
-                          )}
-                          onClick={() => {
-                            setOptions((prev) => ({ ...prev, model }));
-                          }}
+                {[FINISHES].map(({ name, options: selectableOptions }) => (
+                  <RadioGroup
+                    key={name}
+                    value={options[name]}
+                    onChange={(val) => {
+                      setOptions((prev) => ({
+                        ...prev,
+                        [name]: val,
+                      }));
+                    }}
+                  >
+                    <Label className="capitalize text-background">{name}</Label>
+                    <div className="mt-3 space-y-4">
+                      {selectableOptions.map((option) => (
+                        <RadioGroup.Option
+                          key={option.value}
+                          value={option}
+                          className={({ active, checked }) =>
+                            cn(
+                              "relative block cursor-pointer rounded-lg bg-white px-6 py-4 shadow-sm border-2 border-zinc-200 focus:outline-none ring-0 focus:ring-0 outline-none sm:flex sm:justify-between",
+                              {
+                                "border-background": active || checked,
+                              }
+                            )
+                          }
                         >
-                          <Check
-                            className={cn(
-                              "mr-2 h-4 w-4",
-                              model.label === options.model.label
-                                ? "opacity-100"
-                                : "opacity-0"
-                            )}
-                          />
-                          {model.label}
-                        </DropdownMenuItem>
-                      ))}
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </div>
+                          <span className="flex items-center">
+                            <span className="flex flex-col text-sm">
+                              <RadioGroup.Label
+                                className="font-medium text-gray-900"
+                                as="span"
+                              >
+                                {option.label}
+                              </RadioGroup.Label>
 
-                {[MATERIALS, FINISHES].map(
-                  ({ name, options: selectableOptions }) => (
-                    <RadioGroup
-                      key={name}
-                      value={options[name]}
-                      onChange={(val) => {
-                        setOptions((prev) => ({
-                          ...prev,
-                          [name]: val,
-                        }));
-                      }}
-                    >
-                      <Label className="capitalize text-background">
-                        {name}
-                      </Label>
-                      <div className="mt-3 space-y-4">
-                        {selectableOptions.map((option) => (
-                          <RadioGroup.Option
-                            key={option.value}
-                            value={option}
-                            className={({ active, checked }) =>
-                              cn(
-                                "relative block cursor-pointer rounded-lg bg-white px-6 py-4 shadow-sm border-2 border-zinc-200 focus:outline-none ring-0 focus:ring-0 outline-none sm:flex sm:justify-between",
-                                {
-                                  "border-background": active || checked,
-                                }
-                              )
-                            }
-                          >
-                            <span className="flex items-center">
-                              <span className="flex flex-col text-sm">
-                                <RadioGroup.Label
-                                  className="font-medium text-gray-900"
+                              {option.description ? (
+                                <RadioGroup.Description
                                   as="span"
+                                  className="text-gray-500"
                                 >
-                                  {option.label}
-                                </RadioGroup.Label>
-
-                                {option.description ? (
-                                  <RadioGroup.Description
-                                    as="span"
-                                    className="text-gray-500"
-                                  >
-                                    <span className="block sm:inline">
-                                      {option.description}
-                                    </span>
-                                  </RadioGroup.Description>
-                                ) : null}
-                              </span>
+                                  <span className="block sm:inline">
+                                    {option.description}
+                                  </span>
+                                </RadioGroup.Description>
+                              ) : null}
                             </span>
+                          </span>
 
-                            <RadioGroup.Description
-                              as="span"
-                              className="mt-2 flex text-sm sm:ml-4 sm:mt-0 sm:flex-col sm:text-right"
-                            >
-                              <span className="font-medium text-gray-900">
-                                {formatPrice(option.price / 100)}
-                              </span>
-                            </RadioGroup.Description>
-                          </RadioGroup.Option>
-                        ))}
-                      </div>
-                    </RadioGroup>
-                  )
-                )}
+                          <RadioGroup.Description
+                            as="span"
+                            className="mt-2 flex text-sm sm:ml-4 sm:mt-0 sm:flex-col sm:text-right"
+                          >
+                            <span className="font-medium text-gray-900">
+                              {formatPrice(option.price / 100)}
+                            </span>
+                          </RadioGroup.Description>
+                        </RadioGroup.Option>
+                      ))}
+                    </div>
+                  </RadioGroup>
+                ))}
               </div>
             </div>
           </div>
@@ -389,10 +333,7 @@ const DesignConfigurator = ({
           <div className="w-full h-full flex justify-end items-center">
             <div className="w-full flex gap-6 items-center">
               <p className="font-medium whitespace-nowrap text-background">
-                {formatPrice(
-                  (BASE_PRICE + options.finish.price + options.material.price) /
-                    100
-                )}
+                {formatPrice((BASE_PRICE + options.finish.price) / 100)}
               </p>
               <Button
                 isLoading={isPending}
@@ -403,8 +344,6 @@ const DesignConfigurator = ({
                     configId,
                     color: options.color.value,
                     finish: options.finish.value,
-                    material: options.material.value,
-                    model: options.model.value,
                   })
                 }
                 size="sm"

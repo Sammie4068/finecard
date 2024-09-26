@@ -13,40 +13,29 @@ enum OrderStatus {
   awaiting_shipment
 }
 
-enum PhoneModel {
-  iphonex
-  iphone11
-  iphone12
-  iphone13
-  iphone14
-  iphone15
+enum CardFinish {
+  default
+  silk
+  coarse
+  gloss
+  foil
 }
 
-enum CaseMaterial {
-  silicone
-  polycarbonate
-}
-
-enum CaseFinish {
-  smooth
-  textured
-}
-
-enum CaseColor {
+enum CardColor {
   black
   blue
   rose
+  white
+  orange
 }
 
 model Configuration {
-  id              String        @id @default(cuid())
+  id              String      @id @default(cuid())
   width           Int
   height          Int
   imageUrl        String
-  color           CaseColor?
-  model           PhoneModel?
-  material        CaseMaterial?
-  finish          CaseFinish?
+  color           CardColor?
+  finish          CardFinish?
   croppedImageUrl String?
   Order           Order[]
 }

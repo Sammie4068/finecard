@@ -25,13 +25,13 @@ export const createCheckoutSession = async ({
   if (!user) {
     throw new Error("You need to be logged in");
   }
-
-  const { finish, material } = configuration;
+  const { finish } = configuration;
 
   let price = BASE_PRICE;
-  if (finish === "textured") price += PRODUCT_PRICES.finish.textured;
-  if (material === "polycarbonate")
-    price += PRODUCT_PRICES.material.polycarbonate;
+  if (finish === "silk") price += PRODUCT_PRICES.finish.silk;
+  if (finish === "coarse") price += PRODUCT_PRICES.finish.coarse;
+  if (finish === "gloss") price += PRODUCT_PRICES.finish.gloss;
+  if (finish === "foil") price += PRODUCT_PRICES.finish.foil;
 
   let order: Order | undefined = undefined;
 

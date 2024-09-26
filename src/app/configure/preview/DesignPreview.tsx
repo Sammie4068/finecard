@@ -4,8 +4,8 @@ import TemplateCard from "@/components/TemplateCard";
 import { Button } from "@/components/ui/button";
 import { BASE_PRICE, PRODUCT_PRICES } from "@/config/products";
 import { cn, formatPrice } from "@/lib/utils";
-import { COLORS, MODELS } from "@/validators/option-validator";
-import { Configuration } from "@prisma/client";
+import { COLORS } from "@/validators/option-validator";
+import { CardFinish, Configuration } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { ArrowRight, Check } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -26,20 +26,17 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
   const [showConfetti, setShowConfetti] = useState<boolean>(false);
   useEffect(() => setShowConfetti(true));
 
-  const { color, model, finish, material } = configuration;
+  const { color, finish } = configuration;
 
   const tw = COLORS.find(
     (supportedColor) => supportedColor.value === color
   )?.tw;
 
-  const { label: modelLabel } = MODELS.options.find(
-    ({ value }) => value === model
-  )!;
-
   let totalPrice = BASE_PRICE;
-  if (material === "polycarbonate")
-    totalPrice += PRODUCT_PRICES.material.polycarbonate;
-  if (finish === "textured") totalPrice += PRODUCT_PRICES.finish.textured;
+  if (finish === "silk") totalPrice += PRODUCT_PRICES.finish.silk;
+  if (finish === "coarse") totalPrice += PRODUCT_PRICES.finish.silk;
+  if (finish === "gloss") totalPrice += PRODUCT_PRICES.finish.silk;
+  if (finish === "foil") totalPrice += PRODUCT_PRICES.finish.silk;
 
   const { mutate: createPaymentSession, isPending } = useMutation({
     mutationKey: ["get-checkout-session"],
@@ -76,7 +73,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
       >
         <Confetti
           active={showConfetti}
-          config={{ elementCount: 200, spread: 90 }}
+          config={{ elementCount: 2000, spread: 90 }}
         />
       </div>
 
@@ -91,10 +88,10 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
         </div>
 
         <div className="mt-6 sm:col-span-9 md:row-end-1">
-          <h3 className="text-3xl font-bold tracking-tight text-gray-900">
-            Your {modelLabel} Case
+          <h3 className="text-3xl font-bold tracking-tight text-background text-center">
+            Your Fine Card
           </h3>
-          <div className="mt-3 flex items-center gap-1.5 text-base">
+          <div className="mt-3 flex items-center gap-1.5 text-base text-background">
             <Check className="h-4 w-4 text-green-500" />
             In stock and ready to ship
           </div>
@@ -104,18 +101,23 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
           <div className="grid grid-cols-1 gap-y-8 border-b border-gray-200 py-8 sm:grid-cols-2 sm:gap-x-6 sm:py-6 md:py-10">
             <div>
               <p className="font-medium text-zinc-950">Highlights</p>
-              <ol className="mt-3 text-zinc-700 list-disc list-inside">
-                <li>Wireless charging compatible</li>
-                <li>TPU shock absorption</li>
-                <li>Packaging made from recycled materials</li>
-                <li>5 year print warranty</li>
-              </ol>
-            </div>
-            <div>
-              <p className="font-medium text-zinc-950">Materials</p>
-              <ol className="mt-3 text-zinc-700 list-disc list-inside">
-                <li>High-quality, durable material</li>
-                <li>Scratch- and fingerprint resistant coating</li>
+              <ol className="mt-3 text-zinc-700 space-y-2">
+                <li className="w-fit flex items-center gap-1.5">
+                  <Check className="h-4 w-4 text-green-500" />
+                  High-quality, durable material
+                </li>
+                <li className="w-fit flex items-center gap-1.5">
+                  <Check className="h-4 w-4 text-green-500" />
+                  100% Secure
+                </li>
+                <li className="w-fit flex items-center gap-1.5">
+                  <Check className="h-4 w-4 text-green-500" />
+                  All payment terminals compatible
+                </li>
+                <li className="w-fit flex items-center gap-1.5">
+                  <Check className="h-4 w-4 text-green-500" />5 year print
+                  warranty
+                </li>
               </ol>
             </div>
           </div>
@@ -130,23 +132,14 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
                   </p>
                 </div>
 
-                {finish === "textured" ? (
-                  <div className="flex items-center justify-between py-1 mt-2">
-                    <p className="text-gray-600">Textured finish</p>
-                    <p className="font-medium text-gray-900">
-                      {formatPrice(PRODUCT_PRICES.finish.textured / 100)}
-                    </p>
-                  </div>
-                ) : null}
-
-                {material === "polycarbonate" ? (
-                  <div className="flex items-center justify-between py-1 mt-2">
-                    <p className="text-gray-600">Soft polycarbonate material</p>
-                    <p className="font-medium text-gray-900">
-                      {formatPrice(PRODUCT_PRICES.material.polycarbonate / 100)}
-                    </p>
-                  </div>
-                ) : null}
+                <div className="flex items-center justify-between py-1 mt-2">
+                  <p className="text-gray-600 capitalize">{finish} finish</p>
+                  <p className="font-medium text-gray-900">
+                    {formatPrice(
+                      PRODUCT_PRICES.finish[finish as CardFinish] / 100
+                    )}
+                  </p>
+                </div>
 
                 <div className="my-2 h-px bg-gray-200" />
 
