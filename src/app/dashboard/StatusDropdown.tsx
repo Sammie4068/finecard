@@ -52,9 +52,9 @@ const StatusDropdown = ({
           <DropdownMenuItem
             key={status}
             className={cn(
-              "flex text-sm gap-1 items-center p-2.5 cursor-default hover:bg-zinc-100",
+              "flex text-sm gap-1 items-center p-2.5 cursor-default hover:bg-accent",
               {
-                "bg-zinc-100": orderStatus === status,
+                "bg-accent": orderStatus === status,
               }
             )}
             onClick={() => mutate({ id, newStatus: status as OrderStatus })}
