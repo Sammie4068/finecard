@@ -156,7 +156,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
                 disabled={isPending}
                 loadingText="Checking out"
                 onClick={() => handleCheckout()}
-                className="px-4 sm:px-6 lg:px-8"
+                className="px-4 sm:px-6 lg:px-8 bg-secondary text-primary hover:bg-secondary/90 hover:text-primary/90"
               >
                 Check out <ArrowRight className="h-4 w-4 ml-1.5 inline" />
               </Button>
