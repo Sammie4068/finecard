@@ -28,10 +28,9 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
     (supportedColor) => supportedColor.value === color
   )?.tw;
 
-  let totalPrice = BASE_PRICE;
   function calcTotalPrice(finishType: CardFinish) {
-    if (!finishType) return totalPrice;
-    const total = totalPrice + PRODUCT_PRICES.finish[finishType];
+    if (!finishType) return BASE_PRICE;
+    const total = BASE_PRICE + PRODUCT_PRICES.finish[finishType];
     return total;
   }
 
