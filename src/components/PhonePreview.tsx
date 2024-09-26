@@ -1,6 +1,6 @@
 "use client";
 
-import { CaseColor } from "@prisma/client";
+import { CardColor } from "@prisma/client";
 import { useEffect, useRef, useState } from "react";
 import { AspectRatio } from "./ui/aspect-ratio";
 import { cn } from "@/lib/utils";
@@ -10,7 +10,7 @@ const PhonePreview = ({
   color,
 }: {
   croppedImageUrl: string;
-  color: CaseColor;
+  color: CardColor;
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 

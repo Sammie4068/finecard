@@ -3,6 +3,7 @@ import MaxWidthWrapper from "./MaxWidthWrapper";
 import { ArrowRight } from "lucide-react";
 import { buttonVariants } from "./ui/button";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import Logo from "./Logo";
 
 export default async function Navbar() {
   const { getUser } = getKindeServerSession();
@@ -14,16 +15,7 @@ export default async function Navbar() {
     <nav className="sticky z-[100] h-full inset-x-0 top-0 w-full bg-background/70 backdrop-blur-lg transition-all">
       <MaxWidthWrapper>
         <div className="flex h-20 items-center justify-between">
-          <Link
-            href="/"
-            className="flex gap-0.5 items-center z-40 font-semibold"
-          >
-            Fine
-            <span className="bg-primary text-secondary px-2 text-left">
-              Card
-            </span>
-          </Link>
-
+          <Logo />
           <div className="h-full flex items-center space-x-4">
             {user ? (
               <>

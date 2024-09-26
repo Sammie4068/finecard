@@ -10,6 +10,7 @@ import { useMutation } from "@tanstack/react-query";
 import { ArrowRight, Check } from "lucide-react";
 import { useEffect, useState } from "react";
 import Confetti from "react-dom-confetti";
+import ConfettiExplosion from "react-confetti-explosion";
 import { createCheckoutSession } from "./actions";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
@@ -71,10 +72,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
         aria-hidden="true"
         className="pointer-events-none select-none absolute inset-0 overflow-hidden flex justify-center"
       >
-        <Confetti
-          active={showConfetti}
-          config={{ elementCount: 2000, spread: 90 }}
-        />
+        {showConfetti && <ConfettiExplosion />}
       </div>
 
       <LoginModal isOpen={isLoginModalOpen} setIsOpen={setIsLoginModalOpen} />
@@ -92,7 +90,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
             Your Fine Card
           </h3>
           <div className="mt-3 flex items-center gap-1.5 text-base text-background">
-            <Check className="h-4 w-4 text-green-500" />
+            <Check className="h-4 w-4 text-green-600" />
             In stock and ready to ship
           </div>
         </div>
@@ -102,20 +100,20 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
             <div>
               <p className="font-medium text-zinc-950">Highlights</p>
               <ol className="mt-3 text-zinc-700 space-y-2">
-                <li className="w-fit flex items-center gap-1.5">
-                  <Check className="h-4 w-4 text-green-500" />
+                <li className="w-full flex items-center gap-1.5">
+                  <Check className="h-4 w-4 text-green-600" />
                   High-quality, durable material
                 </li>
-                <li className="w-fit flex items-center gap-1.5">
-                  <Check className="h-4 w-4 text-green-500" />
+                <li className="w-full flex items-center gap-1.5">
+                  <Check className="h-4 w-4 text-green-600" />
                   100% Secure
                 </li>
-                <li className="w-fit flex items-center gap-1.5">
-                  <Check className="h-4 w-4 text-green-500" />
+                <li className="w-full flex items-center gap-1.5">
+                  <Check className="h-4 w-4 text-green-600" />
                   All payment terminals compatible
                 </li>
-                <li className="w-fit flex items-center gap-1.5">
-                  <Check className="h-4 w-4 text-green-500" />5 year print
+                <li className="w-full flex items-center gap-1.5">
+                  <Check className="h-4 w-4 text-green-600" />5 year print
                   warranty
                 </li>
               </ol>
