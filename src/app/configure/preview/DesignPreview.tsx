@@ -66,7 +66,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
     <>
       <LoginModal isOpen={isLoginModalOpen} setIsOpen={setIsLoginModalOpen} />
 
-      <div className="mt-20 flex flex-col m-auto items-center border border-red-800 md:grid md:pl-40 text-sm sm:grid-cols-12 sm:grid-rows-1 sm:gap-x-6 md:gap-x-8 lg:gap-x-12">
+      <div className="mt-20 flex flex-col m-auto items-center md:grid md:pl-40 text-sm sm:grid-cols-12 sm:grid-rows-1 sm:gap-x-6 md:gap-x-8 lg:gap-x-12">
         <div className="md:col-span-4 lg:col-span-3 md:row-span-2 md:row-end-2 md:hidden">
           <TemplateCard
             className={cn(`bg-${tw}`, "max-w-[200px]")}
