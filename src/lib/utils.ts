@@ -16,9 +16,9 @@ export const formatPrice = (price: number) => {
 };
 
 export function constructMetadata({
-  title = "CaseCobra - custom high-quality phone cases",
-  description = "Create custom high-quality phone cases in seconds",
-  image = "/thumbnail.png",
+  title = "FineCard – Custom, high-quality payment cards designed to reflect your style.",
+  description = "Personalize your card with cherished memories or fun moments, backed by our 5-year quality guarantee.",
+  image = "/finecard_logo.png",
   icons = "/favicon.ico",
 }: {
   title?: string;
