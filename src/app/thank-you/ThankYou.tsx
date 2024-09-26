@@ -6,6 +6,9 @@ import { Loader2 } from "lucide-react";
 import { cn, formatPrice } from "@/lib/utils";
 import { getPaymentStatus } from "./actions";
 import TemplateCard from "@/components/TemplateCard";
+import Confetti from "react-confetti";
+import useWindowSize from "react-use/lib/useWindowSize";
+import { useEffect, useState } from "react";
 
 const ThankYou = () => {
   const searchParams = useSearchParams();
@@ -17,6 +20,11 @@ const ThankYou = () => {
     retry: true,
     retryDelay: 500,
   });
+
+  const { width, height } = useWindowSize();
+  const [showConfetti, setShowConfetti] = useState(false);
+
+  useEffect(() => setShowConfetti(true));
 
   if (data === undefined) {
     return (
@@ -47,6 +55,14 @@ const ThankYou = () => {
 
   return (
     <div className="bg-white">
+      {showConfetti && (
+        <Confetti
+          numberOfPieces={1000}
+          recycle={false}
+          width={width}
+          height={height}
+        />
+      )}
       <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
         <div className="max-w-xl">
           <p className="text-base font-medium text-background">Thank you!</p>
