@@ -78,10 +78,10 @@ const Page = async () => {
     <div className="flex min-h-screen w-full bg-slate-100 grainy-dark">
       <div className="max-w-7xl w-full mx-auto flex flex-col sm:gap-4 sm:py-4">
         <div className="flex flex-col gap-16">
+          <h1 className="text-4xl font-bold tracking-tight text-secondary">
+            Account
+          </h1>
           <div className="grid gap-4 sm:grid-cols-2 p-3 sm:p-0">
-            <h1 className="text-4xl font-bold tracking-tight text-secondary">
-              Account
-            </h1>
             <Card className="bg-accent">
               <CardHeader className="pb-2">
                 <CardDescription>Last Week</CardDescription>

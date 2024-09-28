@@ -41,7 +41,7 @@ const StatusDropdown = ({
       <DropdownMenuTrigger asChild>
         <Button
           variant="outline"
-          className="w-52 flex justify-between items-center"
+          className="w-52 flex justify-between items-center bg-accent"
         >
           {LABEL_MAP[orderStatus]}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
