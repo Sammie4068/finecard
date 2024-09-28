@@ -3,9 +3,9 @@ import ThankYou from "./ThankYou";
 
 const Page = () => {
   return (
-    <>
+    <Suspense>
       <ThankYou />
-    </>
+    </Suspense>
   );
 };
 

@@ -4,12 +4,22 @@ import { ArrowRight } from "lucide-react";
 import { buttonVariants } from "./ui/button";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import Logo from "./Logo";
+import { Badge } from "./ui/badge";
+import Image from "next/image";
+import { db } from "@/db";
 
 export default async function Navbar() {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
   const isAdmin = user?.email === process.env.ADMIN_EMAIL;
+
+  let userData: any;
+  if (user) {
+    userData = await db.order.findMany({
+      where: { userId: user.id },
+    });
+  }
 
   return (
     <nav className="sticky z-[100] h-full inset-x-0 top-0 w-full bg-background/70 backdrop-blur-lg transition-all">
@@ -19,15 +29,6 @@ export default async function Navbar() {
           <div className="h-full flex items-center space-x-4">
             {user ? (
               <>
-                <Link
-                  href={"/api/auth/logout"}
-                  className={buttonVariants({
-                    size: "sm",
-                    variant: "ghost",
-                  })}
-                >
-                  Sign Out
-                </Link>
                 {isAdmin && (
                   <Link
                     href={"/dashboard"}
@@ -39,6 +40,31 @@ export default async function Navbar() {
                     Dashboard
                   </Link>
                 )}
+
+                <Link
+                  href={"/"}
+                  className={buttonVariants({
+                    size: "sm",
+                    variant: "ghost",
+                  })}
+                >
+                  <Image
+                    src={"/purchases.svg"}
+                    alt="purchase icon"
+                    width={20}
+                    height={20}
+                  />
+                  <Badge className="rounded-2xl -ml-1">{userData.length}</Badge>
+                </Link>
+                <Link
+                  href={"/api/auth/logout"}
+                  className={buttonVariants({
+                    size: "sm",
+                    variant: "ghost",
+                  })}
+                >
+                  Sign Out
+                </Link>
                 <Link
                   href={"/configure/upload"}
                   className={buttonVariants({
