@@ -42,6 +42,6 @@ export function constructMetadata({
       creator: "@sammie_chika",
     },
     icons,
-    metadataBase: new URL("https://case-test-1.vercel.app/"),
+    metadataBase: new URL("https://finecard.vercel.app/"),
   };
 }

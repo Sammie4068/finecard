@@ -21,8 +21,6 @@ const ThankYou = () => {
     retryDelay: 500,
   });
 
-  console.log(data);
-
   const { width, height } = useWindowSize();
   const [showConfetti, setShowConfetti] = useState(false);
 
@@ -42,19 +40,19 @@ const ThankYou = () => {
     );
   }
 
-  // if (data === false) {
-  //   return (
-  //     <div className="w-full mt-24 flex justify-center">
-  //       <div className="flex flex-col items-center gap-2">
-  //         <Loader2 className="h-8 w-8 animate-spin text-zinc-500" />
-  //         <h3 className="font-semibold text-xl text-background">
-  //           Verifying your payment...
-  //         </h3>
-  //         <p className="text-background">This might take a moment.</p>
-  //       </div>
-  //     </div>
-  //   );
-  // }
+  if (data === false) {
+    return (
+      <div className="w-full mt-24 flex justify-center">
+        <div className="flex flex-col items-center gap-2">
+          <Loader2 className="h-8 w-8 animate-spin text-zinc-500" />
+          <h3 className="font-semibold text-xl text-background">
+            Verifying your payment...
+          </h3>
+          <p className="text-background">This might take a moment.</p>
+        </div>
+      </div>
+    );
+  }
 
   const { configuration, billingAddress, shippingAddress, amount } = data;
   const { color } = configuration;

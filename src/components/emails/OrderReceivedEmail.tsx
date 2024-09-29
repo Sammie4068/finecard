@@ -26,7 +26,7 @@ const OrderReceivedEmail = ({
   const baseUrl =
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
-      : "https://case-test-1.vercel.app";
+      : "https://finecard.vercel.app";
 
   return (
     <Html>
@@ -36,10 +36,10 @@ const OrderReceivedEmail = ({
         <Container style={container}>
           <Section style={message}>
             <Img
-              src={`${baseUrl}/snake-3.png`}
+              src={`${baseUrl}/finecard_logo.png`}
               width="65"
               height="73"
-              alt="delivery snake"
+              alt="finecard logo"
               style={{ margin: "auto" }}
             />
             <Heading style={global.heading}>Thank you for your order!</Heading>
@@ -91,7 +91,7 @@ const OrderReceivedEmail = ({
             </Row>
             <Row>
               <Text style={footer.text}>
-                © CaseCobra, Inc. All Rights Reserved.
+                © FineCard, Inc. All Rights Reserved.
               </Text>
             </Row>
           </Section>
