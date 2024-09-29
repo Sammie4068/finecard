@@ -7,6 +7,7 @@ import Logo from "./Logo";
 import { Badge } from "./ui/badge";
 import Image from "next/image";
 import { db } from "@/db";
+import type { Order } from "@prisma/client";
 
 export default async function Navbar() {
   const { getUser } = getKindeServerSession();
@@ -14,7 +15,7 @@ export default async function Navbar() {
 
   const isAdmin = user?.email === process.env.ADMIN_EMAIL;
 
-  let userData: any;
+  let userData: Order[] | undefined;
   if (user) {
     userData = await db.order.findMany({
       where: { userId: user.id },
@@ -54,7 +55,9 @@ export default async function Navbar() {
                     width={20}
                     height={20}
                   />
-                  <Badge className="rounded-2xl -ml-1">{userData.length}</Badge>
+                  <Badge className="rounded-2xl -ml-1">
+                    {userData ? userData.length : 0}
+                  </Badge>
                 </Link>
                 <Link
                   href={"/api/auth/logout"}
