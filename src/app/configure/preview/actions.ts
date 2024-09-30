@@ -24,8 +24,8 @@ export const createCheckoutSession = async ({
   console.log(user);
 
   if (!user) {
-    // throw new Error("You need to be logged in");
-    return { status: "not logged in" };
+    throw new Error("You need to be logged in");
+    // return { status: "not logged in" };
   }
   const { finish } = configuration;
 
