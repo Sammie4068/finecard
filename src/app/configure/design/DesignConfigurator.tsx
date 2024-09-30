@@ -347,7 +347,7 @@ const DesignConfigurator = ({
                   })
                 }
                 size="sm"
-                className="w-full bg-secondary text-primary hover:bg-secondary/90 hover:text-primary/90 flex items-center justify-center gap-2"
+                className="w-full bg-secondary text-primary hover:bg-secondary/90 hover:text-primary/90 gap-2"
               >
                 Continue
                 <ArrowRight className="h-4 w-4 inline" />

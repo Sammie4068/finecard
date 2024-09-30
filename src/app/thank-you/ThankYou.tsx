@@ -2,13 +2,15 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
-import { Loader2 } from "lucide-react";
+import { Home, Loader2 } from "lucide-react";
 import { cn, formatPrice } from "@/lib/utils";
 import { getPaymentStatus } from "./actions";
 import TemplateCard from "@/components/TemplateCard";
 import Confetti from "react-confetti";
 import useWindowSize from "react-use/lib/useWindowSize";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
 
 const ThankYou = () => {
   const searchParams = useSearchParams();
@@ -161,6 +163,18 @@ const ThankYou = () => {
             <p className="font-medium text-zinc-900">Total</p>
             <p className="text-zinc-700">{formatPrice(amount)}</p>
           </div>
+        </div>
+        <div className="flex items-center justify-center mt-7">
+          <Link
+            href={"/"}
+            className={buttonVariants({
+              size: "lg",
+              className:
+                "px-4 sm:px-6 lg:px-8 bg-secondary text-primary/90 hover:bg-secondary/90 gap-2 m-auto",
+            })}
+          >
+            Back Home <Home className="h-4 w-4 inline" />
+          </Link>
         </div>
       </div>
     </div>
