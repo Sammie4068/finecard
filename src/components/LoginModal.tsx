@@ -6,7 +6,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "./ui/dialog";
-import Image from "next/image";
 import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs";
 import { buttonVariants } from "./ui/button";
 import Logo from "./Logo";
