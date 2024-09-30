@@ -11,6 +11,7 @@ import useWindowSize from "react-use/lib/useWindowSize";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
+import { COLORS } from "@/validators/option-validator";
 
 const ThankYou = () => {
   const searchParams = useSearchParams();
@@ -22,7 +23,6 @@ const ThankYou = () => {
     retry: true,
     retryDelay: 500,
   });
-  console.log(data);
 
   const { width, height } = useWindowSize();
   const [showConfetti, setShowConfetti] = useState(false);
@@ -59,6 +59,9 @@ const ThankYou = () => {
 
   const { configuration, billingAddress, shippingAddress, amount } = data;
   const { color } = configuration;
+  const tw = COLORS.find(
+    (supportedColor) => supportedColor.value === color
+  )?.tw;
 
   return (
     <div className="bg-white">
@@ -103,7 +106,7 @@ const ThankYou = () => {
 
         <div className="flex space-x-6 overflow-hidden mt-10 rounded-xl bg-gray-900/5 ring-1 ring-inset ring-gray-900/10 lg:rounded-2xl items-center justify-center py-4">
           <TemplateCard
-            className={cn(`bg-${color!}`, "max-w-[300px] md:max-w-full")}
+            className={cn(`bg-${tw!}`, "max-w-[300px] md:max-w-full")}
             imgSrc={configuration.croppedImageUrl!}
           />
         </div>
