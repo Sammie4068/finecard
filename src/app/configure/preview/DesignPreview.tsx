@@ -38,6 +38,8 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
     mutationKey: ["get-checkout-session"],
     mutationFn: createCheckoutSession,
     onSuccess: ({ url, status }) => {
+      console.log(url, status);
+
       if (status) {
         localStorage.setItem("configurationId", id);
         setIsLoginModalOpen(true);
