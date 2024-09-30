@@ -23,7 +23,8 @@ export const createCheckoutSession = async ({
   const user = await getUser();
 
   if (!user) {
-    throw new Error("You need to be logged in");
+    // throw new Error("You need to be logged in");
+    return { status: "not logged in" };
   }
   const { finish } = configuration;
 

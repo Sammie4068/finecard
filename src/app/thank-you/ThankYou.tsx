@@ -22,6 +22,7 @@ const ThankYou = () => {
     retry: true,
     retryDelay: 500,
   });
+  console.log(data);
 
   const { width, height } = useWindowSize();
   const [showConfetti, setShowConfetti] = useState(false);

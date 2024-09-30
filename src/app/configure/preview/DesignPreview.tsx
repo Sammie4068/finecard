@@ -12,14 +12,14 @@ import { useState } from "react";
 import { createCheckoutSession } from "./actions";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+// import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import LoginModal from "@/components/LoginModal";
 
 const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
   const router = useRouter();
   const { toast } = useToast();
   const { id } = configuration;
-  const { user } = useKindeBrowserClient();
+  // const { user } = useKindeBrowserClient();
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
 
   const { color, finish } = configuration;
@@ -37,7 +37,11 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
   const { mutate: createPaymentSession, isPending } = useMutation({
     mutationKey: ["get-checkout-session"],
     mutationFn: createCheckoutSession,
-    onSuccess: ({ url }) => {
+    onSuccess: ({ url, status }) => {
+      if (status) {
+        localStorage.setItem("configurationId", id);
+        setIsLoginModalOpen(true);
+      }
       if (url) router.push(url);
       else throw new Error("Unable to retrieve payment URL.");
     },
@@ -51,16 +55,16 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
   });
 
   const handleCheckout = () => {
-    console.log(user);
+    // console.log(user);
 
-    if (user) {
-      // create payment session
-      createPaymentSession({ configId: id });
-    } else {
-      // need to log in
-      localStorage.setItem("configurationId", id);
-      setIsLoginModalOpen(true);
-    }
+    // if (user) {
+    // create payment session
+    createPaymentSession({ configId: id });
+    // } else {
+    //   // need to log in
+    //   localStorage.setItem("configurationId", id);
+    //   setIsLoginModalOpen(true);
+    // }
   };
 
   return (
