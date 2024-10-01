@@ -21,7 +21,6 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
   const { id } = configuration;
   const { user } = useKindeBrowserClient();
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
-  console.log(useKindeBrowserClient());
 
   const { color, finish } = configuration;
 
@@ -52,6 +51,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
   });
 
   const handleCheckout = () => {
+    console.log(useKindeBrowserClient());
     console.log(user);
 
     if (user) {
