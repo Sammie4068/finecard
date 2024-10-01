@@ -18,7 +18,10 @@ export default async function Navbar() {
   let userData: Order[] | undefined;
   if (user) {
     userData = await db.order.findMany({
-      where: { userId: user.id },
+      where: {
+        userId: user.id,
+        isPaid: true,
+      },
     });
   }
 
@@ -43,7 +46,7 @@ export default async function Navbar() {
                 )}
 
                 <Link
-                  href={"/"}
+                  href={"/purchases"}
                   className={buttonVariants({
                     size: "sm",
                     variant: "ghost",
