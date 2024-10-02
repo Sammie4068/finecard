@@ -1,14 +1,5 @@
 import { buttonVariants } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import {
   Table,
   TableBody,
   TableCell,
@@ -19,7 +10,7 @@ import {
 import { db } from "@/db";
 import { formatPrice } from "@/lib/utils";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { Order, OrderStatus } from "@prisma/client";
+import { OrderStatus } from "@prisma/client";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -27,6 +18,10 @@ import { notFound } from "next/navigation";
 const Page = async () => {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
+
+  if (!user) {
+    return notFound();
+  }
 
   const orders = await db.order.findMany({
     where: {
@@ -55,12 +50,12 @@ const Page = async () => {
     <div className="flex min-h-screen w-full bg-slate-100 grainy-dark">
       <div className="max-w-7xl w-full mx-auto flex flex-col sm:gap-4 sm:py-4">
         <div className="flex flex-col gap-16">
-          {orders ? (
+          {orders.length < 1 ? (
             <div className="flex  flex-col items-center justify-center gap mt-10">
               <h1 className="text-4xl font-bold tracking-tight text-secondary mb-2">
                 No Purchases!
               </h1>
-              <p className="text-xl text-accent mb-4">
+              <p className="text-xl text-accent text-center mb-4">
                 You have not made any purchases yet, click the button below to
                 make a purchase
               </p>
