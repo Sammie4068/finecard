@@ -25,6 +25,8 @@ export default async function Navbar() {
     });
   }
 
+  console.log(userData);
+
   return (
     <nav className="sticky z-[100] h-full inset-x-0 top-0 w-full bg-background/70 backdrop-blur-lg transition-all">
       <MaxWidthWrapper>
