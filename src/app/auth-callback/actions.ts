@@ -24,7 +24,7 @@ export const getAuthStatus = async () => {
       },
     });
   }
-  headers().set("Cache-Control", "no-store, max-age=0");
+  // headers().set("Cache-Control", "no-store, max-age=0");
 
   return { success: true };
 };
