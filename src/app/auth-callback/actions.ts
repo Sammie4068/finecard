@@ -2,6 +2,7 @@
 
 import { db } from "@/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { headers } from "next/headers";
 
 export const getAuthStatus = async () => {
   const { getUser } = getKindeServerSession();
@@ -23,6 +24,7 @@ export const getAuthStatus = async () => {
       },
     });
   }
+  headers().set("Cache-Control", "no-store, max-age=0");
 
   return { success: true };
 };
